@@ -1,11 +1,9 @@
-using System;
 using UnityEngine;
 
 public class HeldItem : MonoBehaviour
 {
     private GameObject _item;
     private PlayerController _player;
-    private bool _isSettingItem;
 
     // Start is called before the first frame update
     void Start()
@@ -16,26 +14,17 @@ public class HeldItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-    }
-
-    // Need to use FixedUpdate until a better solution is determined...
-    // Setting a held item item runs at the same time as Drop item, dropping the item
-    private void FixedUpdate()
-    {
-        if (!_isSettingItem && Input.GetKeyDown(KeyCode.E) && _item) DropItem();
+        if (Input.GetKeyDown(KeyCode.D) && _item) DropItem();
     }
 
     // Sets the held item for the player
     public void SetHeldItem(GameObject item)
     {
         if (!item) return;
-
-        _isSettingItem = true;
+        
         item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         item.GetComponent<Rigidbody>().useGravity = false;
         _item = Instantiate(item, transform.position, transform.rotation, transform);
-        _isSettingItem = false;
     }
 
     // Drops the held item in front of the player
