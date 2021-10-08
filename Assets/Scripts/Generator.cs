@@ -5,11 +5,11 @@ public class Generator : MonoBehaviour
     public GameObject generatedItem;
     private GameObject _itemOnGenerator;
     private bool _isPlayerNear;
-    private PlayerController _player;
+    private HeldItem _heldItem;
 
     private void Start()
     {
-        _player = GameObject.Find("Player").GetComponent<PlayerController>();
+        _heldItem = GameObject.Find("HeldItem").GetComponent<HeldItem>();
     }
 
     private void Update()
@@ -38,7 +38,7 @@ public class Generator : MonoBehaviour
 
     private void PickupItem()
     {
-        _player.SetHeldItem(_itemOnGenerator);
+        _heldItem.SetHeldItem(_itemOnGenerator);
         Destroy(_itemOnGenerator);
     }
 }
