@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Carrot
   - Cooked Fish
+  - Utility
   layers:
   - Default
   - TransparentFX
