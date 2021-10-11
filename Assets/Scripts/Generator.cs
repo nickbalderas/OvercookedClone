@@ -1,44 +1,23 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Generator : MonoBehaviour
+public class Generator : Countertop
 {
     public GameObject generatedItem;
-    private GameObject _itemOnGenerator;
-    private bool _isPlayerNear;
-    private HeldItem _heldItem;
-
-    private void Start()
+    
+    protected override void Update()
     {
-        _heldItem = GameObject.Find("HeldItem").GetComponent<HeldItem>();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E) && _isPlayerNear)
+        if (Input.GetKeyDown(KeyCode.E) && IsPlayerNear)
         {
-            if (_itemOnGenerator) PickupItem();
+            if (placedItem) RemoveItem();
+            else if (HeldItem.heldItem) PlaceItem(HeldItem.TransferItem());
             else SpawnItem();
         }
     }
-
-    private void OnTriggerEnter(Collider other)
+    
+    private new void SpawnItem()
     {
-        _isPlayerNear = other.gameObject.CompareTag("Player");
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        _isPlayerNear = false;
-    }
-
-    private void SpawnItem()
-    {
-        _itemOnGenerator = Instantiate(generatedItem, new Vector3(transform.position.x, 2, transform.position.z), transform.rotation);
-    }
-
-    private void PickupItem()
-    {
-        _heldItem.SetHeldItem(_itemOnGenerator);
-        Destroy(_itemOnGenerator);
+        placedItem = Instantiate(generatedItem, new Vector3(transform.position.x, 2, transform.position.z), transform.rotation);
+        canGetItem = true;
+        canSetItem = false;
     }
 }

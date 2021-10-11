@@ -172,10 +172,9 @@ GameObject:
   - component: {fileID: 134733951}
   - component: {fileID: 134733950}
   - component: {fileID: 134733953}
-  - component: {fileID: 134733954}
   m_Layer: 0
   m_Name: Generator 2
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -265,22 +264,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 134733948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc597b535ffe6bb44bfb4bbe3e7b175d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7de5f94aa00e462f8537469987f7b9c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   generatedItem: {fileID: 5921073369615034248, guid: 6b6cdb85b8c31dd45bbea94eeb9fa6e3, type: 3}
---- !u!114 &134733954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134733948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &201348501
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,7 +421,7 @@ GameObject:
   - component: {fileID: 306685530}
   m_Layer: 0
   m_Name: Counter Unit 8
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -524,7 +511,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 306685525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f107e022fd04ddfa62b3675166e0116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &313638798
@@ -818,7 +805,7 @@ GameObject:
   - component: {fileID: 551407111}
   m_Layer: 0
   m_Name: Counter Unit 5
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -908,7 +895,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 551407106}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f107e022fd04ddfa62b3675166e0116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &569493396
@@ -971,7 +958,7 @@ GameObject:
   - component: {fileID: 583496442}
   m_Layer: 0
   m_Name: Counter Unit 4
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1061,7 +1048,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 583496437}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f107e022fd04ddfa62b3675166e0116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &607484240
@@ -1079,7 +1066,7 @@ GameObject:
   - component: {fileID: 607484245}
   m_Layer: 0
   m_Name: Counter Unit 14
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1169,7 +1156,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 607484240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f107e022fd04ddfa62b3675166e0116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &705507993
@@ -1312,7 +1299,7 @@ GameObject:
   - component: {fileID: 843246071}
   m_Layer: 0
   m_Name: Counter Unit 3
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1402,7 +1389,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 843246066}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f107e022fd04ddfa62b3675166e0116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &963194225
@@ -1503,7 +1490,7 @@ GameObject:
   - component: {fileID: 1027313851}
   m_Layer: 0
   m_Name: Counter Unit 6
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1593,7 +1580,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1027313846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f107e022fd04ddfa62b3675166e0116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1040867303
@@ -1721,7 +1708,7 @@ GameObject:
   - component: {fileID: 1128656091}
   m_Layer: 0
   m_Name: Counter Unit 9
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1811,7 +1798,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1128656086}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f107e022fd04ddfa62b3675166e0116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1174247486
@@ -1826,9 +1813,10 @@ GameObject:
   - component: {fileID: 1174247490}
   - component: {fileID: 1174247489}
   - component: {fileID: 1174247488}
+  - component: {fileID: 1174247491}
   m_Layer: 0
   m_Name: Cutting Board 1
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1909,6 +1897,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174247486}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1174247491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174247486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1920ad0f86be4a57aeb3217ce47012b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1282293375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,7 +1924,7 @@ GameObject:
   - component: {fileID: 1282293380}
   m_Layer: 0
   m_Name: Counter Unit 18
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2014,7 +2014,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1282293375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f107e022fd04ddfa62b3675166e0116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1288022195
@@ -2032,7 +2032,7 @@ GameObject:
   - component: {fileID: 1288022200}
   m_Layer: 0
   m_Name: Counter Unit 10
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2122,7 +2122,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1288022195}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f107e022fd04ddfa62b3675166e0116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1308299207
@@ -2140,7 +2140,7 @@ GameObject:
   - component: {fileID: 1308299212}
   m_Layer: 0
   m_Name: Counter Unit 15
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2230,7 +2230,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1308299207}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f107e022fd04ddfa62b3675166e0116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1473792429
@@ -2343,7 +2343,7 @@ GameObject:
   - component: {fileID: 1477327376}
   m_Layer: 0
   m_Name: Counter Unit 11
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2433,7 +2433,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1477327371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f107e022fd04ddfa62b3675166e0116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1479508049
@@ -2451,7 +2451,7 @@ GameObject:
   - component: {fileID: 1479508054}
   m_Layer: 0
   m_Name: Counter Unit 19
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2541,7 +2541,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1479508049}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f107e022fd04ddfa62b3675166e0116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1530519755
@@ -2651,9 +2651,10 @@ GameObject:
   - component: {fileID: 1535014615}
   - component: {fileID: 1535014614}
   - component: {fileID: 1535014613}
+  - component: {fileID: 1535014616}
   m_Layer: 0
   m_Name: Cutting Board 2
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2734,6 +2735,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535014611}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1535014616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535014611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1920ad0f86be4a57aeb3217ce47012b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1644126321
 GameObject:
   m_ObjectHideFlags: 0
@@ -2749,7 +2762,7 @@ GameObject:
   - component: {fileID: 1644126326}
   m_Layer: 0
   m_Name: Counter Unit 16
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2839,7 +2852,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1644126321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f107e022fd04ddfa62b3675166e0116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1678458360
@@ -2952,7 +2965,7 @@ GameObject:
   - component: {fileID: 1706473671}
   m_Layer: 0
   m_Name: Counter Unit 1
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3042,7 +3055,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1706473666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f107e022fd04ddfa62b3675166e0116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1747120663
@@ -3155,7 +3168,7 @@ GameObject:
   - component: {fileID: 1753053125}
   m_Layer: 0
   m_Name: Counter Unit 13
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3245,7 +3258,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1753053120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f107e022fd04ddfa62b3675166e0116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1925217589
@@ -3356,10 +3369,9 @@ GameObject:
   - component: {fileID: 1948935686}
   - component: {fileID: 1948935685}
   - component: {fileID: 1948935688}
-  - component: {fileID: 1948935689}
   m_Layer: 0
   m_Name: Generator 1
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3449,22 +3461,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1948935683}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc597b535ffe6bb44bfb4bbe3e7b175d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7de5f94aa00e462f8537469987f7b9c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   generatedItem: {fileID: 936125622239344345, guid: 65179bfc3fc44e94b8cad3a5423c4736, type: 3}
---- !u!114 &1948935689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948935683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2029476004
 GameObject:
   m_ObjectHideFlags: 0

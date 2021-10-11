@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HeldItem : MonoBehaviour
 {
-    private GameObject _item;
+    public GameObject heldItem { get; set; }
     private PlayerController _player;
 
     // Start is called before the first frame update
@@ -14,7 +14,7 @@ public class HeldItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D) && _item) DropItem();
+        if (Input.GetKeyDown(KeyCode.D) && heldItem) DropItem();
     }
 
     // Sets the held item for the player
@@ -24,17 +24,24 @@ public class HeldItem : MonoBehaviour
         
         item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         item.GetComponent<Rigidbody>().useGravity = false;
-        _item = Instantiate(item, transform.position, transform.rotation, transform);
+        heldItem = Instantiate(item, transform.position, transform.rotation, transform);
+    }
+
+    public GameObject TransferItem()
+    {
+        GameObject item = heldItem;
+        Destroy(heldItem);
+        return item;
     }
 
     // Drops the held item in front of the player
     private void DropItem()
     {
-        if (!_item) return;
+        if (!heldItem) return;
         
-        _item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        _item.GetComponent<Rigidbody>().useGravity = true;
-        Instantiate(_item, _player.transform.position + new Vector3(1, 1, 0), transform.rotation);
-        Destroy(_item);
+        heldItem.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        heldItem.GetComponent<Rigidbody>().useGravity = true;
+        Instantiate(heldItem, _player.transform.position + new Vector3(1, 1, 0), transform.rotation);
+        Destroy(heldItem);
     }
 }

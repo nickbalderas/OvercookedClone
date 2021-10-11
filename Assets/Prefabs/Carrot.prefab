@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 5921073369612872138}
   - component: {fileID: 5921073369861355360}
   - component: {fileID: 5921073369861355356}
-  - component: {fileID: 4611536141563063160}
+  - component: {fileID: 3937032642750221032}
   m_Layer: 0
   m_Name: Carrot
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +113,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.14170074, y: 0.141707, z: 0.61012447}
   m_Center: {x: 0, y: 0.0708535, z: -0.000000059604645}
---- !u!114 &4611536141563063160
+--- !u!114 &3937032642750221032
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5921073369615034248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: c26bf6a0ef734e55bbb3eade1c5773a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 5921073369615034248}
