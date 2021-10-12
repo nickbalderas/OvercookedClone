@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de5f94aa00e462f8537469987f7b9c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generatedItem: {fileID: 5921073369615034248, guid: 6b6cdb85b8c31dd45bbea94eeb9fa6e3, type: 3}
+  generatedItem: {fileID: -9042449329025036182, guid: 6b6cdb85b8c31dd45bbea94eeb9fa6e3, type: 3}
 --- !u!1 &201348501
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,7 +277,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 201348502}
-  - component: {fileID: 201348503}
   m_Layer: 0
   m_Name: HeldItem
   m_TagString: Untagged
@@ -292,25 +291,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 201348501}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.01, y: 0.595, z: 0.714}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.27, y: 0.5949805, z: 0.892}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 544669836}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!114 &201348503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 201348501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b8038522cee6ae4b92900da15d8a003, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &247153855
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,6 +755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af96688c0f114a1db2a5b69808d23cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactableInRange: []
 --- !u!195 &544669839
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3464,7 +3452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de5f94aa00e462f8537469987f7b9c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generatedItem: {fileID: 936125622239344345, guid: 65179bfc3fc44e94b8cad3a5423c4736, type: 3}
+  generatedItem: {fileID: 3957414039313431721, guid: 65179bfc3fc44e94b8cad3a5423c4736, type: 3}
 --- !u!1 &2029476004
 GameObject:
   m_ObjectHideFlags: 0
@@ -3573,7 +3561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7df1c1820f7414fb7b1a7c02c4c113e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generatedItem: {fileID: 1077346499770471825, guid: 9d4b4802cd8c3e348935ba8f35732f6a, type: 3}
+  generatedItem: {fileID: 8964482041671311903, guid: 9d4b4802cd8c3e348935ba8f35732f6a, type: 3}
 --- !u!1 &2136774757
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,27 +14,27 @@ public class CuttingBoard: Countertop
         }
     }
 
-    protected override void PlaceItem(GameObject item)
+    protected override void PlaceItem()
     {
-        if (!canSetItem) return;
+        if (_Item) return;
 
+        var item = GameObject.Find("HeldItem").GetComponentInChildren<Item>();
+        
         ICarriable carriable = item.GetComponent<ICarriable>();
         if (carriable == null) return;
         
         Ingredient ingredient = item.GetComponent<Ingredient>();
         CanCutIngredient = ingredient is {isCut: false};
-        
-        canSetItem = false;
-        canGetItem = true;
-        item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        item.GetComponent<Rigidbody>().useGravity = true;
-        placedItem = Instantiate(item, new Vector3(transform.position.x, 2, transform.position.z), transform.rotation);
+
+        item.GetComponent<Rigidbody>().isKinematic = false;
+        _Item = Instantiate(item, new Vector3(transform.position.x, 2, transform.position.z), transform.rotation);
+        Destroy(item.gameObject);
     }
 
     private void CutIngredient()
     {
         if (!CanCutIngredient) return;
-        placedItem.GetComponent<Ingredient>().isCut = true;
+        _Item.GetComponent<Ingredient>().isCut = true;
     }
 
     protected override void CleanCountertop()

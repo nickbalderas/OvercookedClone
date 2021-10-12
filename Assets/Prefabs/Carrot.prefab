@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5921073369612872138}
   - component: {fileID: 5921073369861355360}
   - component: {fileID: 5921073369861355356}
-  - component: {fileID: 3937032642750221032}
+  - component: {fileID: -9042449329025036182}
   m_Layer: 0
   m_Name: Carrot
   m_TagString: Interactable
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5921073369615034248}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1069.8672, y: 2177.1833, z: 3178.7764}
   m_LocalScale: {x: 4, y: 2, z: 4}
   m_Children: []
@@ -113,7 +113,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.14170074, y: 0.141707, z: 0.61012447}
   m_Center: {x: 0, y: 0.0708535, z: -0.000000059604645}
---- !u!114 &3937032642750221032
+--- !u!114 &-9042449329025036182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,4 +125,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c26bf6a0ef734e55bbb3eade1c5773a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5921073369615034248}
+  isCut: 0

@@ -8,9 +8,6 @@ public class PlateSpawner : Generator
     private new void Start()
     {
         gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
-        HeldItem = GameObject.Find("HeldItem").GetComponent<HeldItem>();
-        canSetItem = false; // The player should not be able to place anything, only take from.
-        
         for (int i = 1; i <= _startingNumberOfPlates; i++) SpawnPlates();
     }
 
@@ -27,9 +24,9 @@ public class PlateSpawner : Generator
         if (_plates.Count <= 0) return;
         
         var plateToGive = _plates[_plates.Count - 1];
-        if (HeldItem.SetHeldItem(plateToGive.gameObject))
+        if (!GameObject.Find("HeldItem").GetComponentInChildren<Item>())
         {
-            Destroy(plateToGive.gameObject);
+            plateToGive.PickUp();
             _plates.RemoveAt(_plates.Count - 1);
         }
     }

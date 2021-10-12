@@ -2,22 +2,20 @@
 
 public class Generator : Countertop
 {
-    public GameObject generatedItem;
+    public Item generatedItem;
     
     protected new void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && IsPlayerNear && IsPlayerFacing)
         {
-            if (placedItem) RemoveItem();
-            else if (HeldItem.heldItem) PlaceItem(HeldItem.TransferItem());
+            if (_Item) RemoveItem();
+            else if (GameObject.Find("HeldItem").GetComponentInChildren<Item>()) PlaceItem();
             else SpawnItem();
         }
     }
     
     private void SpawnItem()
     {
-        placedItem = Instantiate(generatedItem, new Vector3(transform.position.x, 2, transform.position.z), transform.rotation);
-        canGetItem = true;
-        canSetItem = false;
+        _Item = Instantiate(generatedItem, new Vector3(transform.position.x, 2, transform.position.z), transform.rotation);
     }
 }

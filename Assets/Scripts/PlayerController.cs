@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Interfaces;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     private Camera _camera;
     private NavMeshAgent _agent;
-    private readonly List<Collider> _interactableInRange = new List<Collider>();
+    public List<Collider> _interactableInRange = new List<Collider>();
 
     // Start is called before the first frame update
     void Start()
