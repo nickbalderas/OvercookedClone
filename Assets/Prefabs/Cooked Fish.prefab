@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 936125622236851815}
   - component: {fileID: 936125621525471414}
   - component: {fileID: 936125621525471417}
-  - component: {fileID: 1468981199469167203}
+  - component: {fileID: 3957414039313431721}
   m_Layer: 0
   m_Name: Cooked Fish
-  m_TagString: Utility
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,7 +113,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.26173592, y: 0.13675982, z: 0.4304055}
   m_Center: {x: 0, y: 0.111486286, z: 0.00342983}
---- !u!114 &1468981199469167203
+--- !u!114 &3957414039313431721
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 936125622239344345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fad0753bfd8578748bbea6d74c62eb43, type: 3}
+  m_Script: {fileID: 11500000, guid: c26bf6a0ef734e55bbb3eade1c5773a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 936125622239344345}

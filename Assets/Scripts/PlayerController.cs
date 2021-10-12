@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Utility"))
+        if (other.CompareTag("Interactable"))
         {
             _interactableInRange.Add(other);
         }
@@ -32,10 +33,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Utility"))
+        if (other.CompareTag("Interactable"))
         {
-            Utility utility = other.gameObject.GetComponent<Utility>();
-            utility.HighlightInteractable(false);
+            IInteractable utility = other.gameObject.GetComponent<IInteractable>();
+            utility.Highlight(false);
             _interactableInRange.Remove(other);
         }
     }
@@ -58,20 +59,25 @@ public class PlayerController : MonoBehaviour
         {
             float closestSquareDistance = Mathf.Infinity;
             
-            foreach (Collider interactable in _interactableInRange)
+            foreach (Collider collider in _interactableInRange)
             {
-                Utility utility = interactable.gameObject.GetComponent<Utility>();
-                Vector3 pos = interactable.ClosestPointOnBounds(transform.position);
+                Vector3 pos = collider.ClosestPointOnBounds(transform.position);
                 Vector3 direction = pos - transform.position;
                 float sqrDist = direction.sqrMagnitude;
-                bool isPlayerFacing =  Vector3.Dot(transform.position, (interactable.transform.position - transform.position).normalized) > 0;
+                bool isPlayerFacing =  Vector3.Dot(transform.position, (collider.transform.position - transform.position).normalized) > 0;
 
+                IInteractable interactable = collider.GetComponent<IInteractable>();
                 if (sqrDist < closestSquareDistance && isPlayerFacing)
                 {
                     closestSquareDistance = sqrDist;
-                    utility.HighlightInteractable(true);
+                    interactable.IsPlayerFacing = true;
+                    interactable.Highlight(true);
                 }
-                else utility.HighlightInteractable(false);
+                else
+                {
+                    interactable.IsPlayerFacing = false;
+                    interactable.Highlight(false);
+                }
             }
         }
     }

@@ -4,11 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Generator
   - Ground
-  - Carrot
-  - Cooked Fish
-  - Utility
+  - Interactable
   layers:
   - Default
   - TransparentFX
