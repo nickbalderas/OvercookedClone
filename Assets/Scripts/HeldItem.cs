@@ -20,13 +20,14 @@ public class HeldItem : MonoBehaviour, IInteractable
     }
 
     // Sets the held item for the player
-    public void SetHeldItem(GameObject item)
+    public bool SetHeldItem(GameObject item)
     {
-        if (!item) return;
+        if (heldItem || !item) return false;
         
         item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         item.GetComponent<Rigidbody>().useGravity = false;
         heldItem = Instantiate(item, transform.position, transform.rotation, transform);
+        return true;
     }
 
     public GameObject TransferItem()

@@ -54,8 +54,7 @@ public class Countertop : MonoBehaviour, IInteractable
     {
         if (!canGetItem) return;
 
-        HeldItem.SetHeldItem(placedItem);
-        CleanCountertop();
+        if (HeldItem.SetHeldItem(placedItem)) CleanCountertop();
     }
     
     protected void CleanCountertop()
