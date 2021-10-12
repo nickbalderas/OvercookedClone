@@ -12,14 +12,20 @@ public class CuttingBoard: Countertop
         ICarriable carriable = item.GetComponent<ICarriable>();
         if (carriable == null) return;
         
-        IIngredient ingredient = item.GetComponent<IIngredient>();
-        CanCutIngredient = ingredient is {isCut: false};
+        Ingredient ingredient = item.GetComponent<Ingredient>();
+        CanCutIngredient = ingredient is {IsCut: false};
         
         canSetItem = false;
         canGetItem = true;
         item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         item.GetComponent<Rigidbody>().useGravity = true;
         placedItem = Instantiate(item, new Vector3(transform.position.x, 2, transform.position.z), transform.rotation);
+    }
+
+    private void CutIngredient()
+    {
+        if (!CanCutIngredient) return;
+        placedItem.GetComponent<Ingredient>().IsCut = true;
     }
 
     private new void CleanCountertop()

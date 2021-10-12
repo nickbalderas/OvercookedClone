@@ -1,11 +1,12 @@
 ﻿using Interfaces;
 using UnityEngine;
 
-public class Countertop : MonoBehaviour, ICountertop
+public class Countertop : MonoBehaviour, IInteractable
 {
     public GameObject placedItem { get; set; }
     public bool canSetItem { get; set; }
     public bool canGetItem { get; set; }
+    public bool IsPlayerFacing { get; set; }
     protected bool IsPlayerNear;
     protected HeldItem HeldItem;
 
@@ -18,7 +19,7 @@ public class Countertop : MonoBehaviour, ICountertop
     
     protected virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && IsPlayerNear)
+        if (Input.GetKeyDown(KeyCode.E) && IsPlayerNear && IsPlayerFacing)
         {
             if (placedItem) RemoveItem();
             else PlaceItem(HeldItem.TransferItem());

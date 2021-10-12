@@ -70,9 +70,14 @@ public class PlayerController : MonoBehaviour
                 if (sqrDist < closestSquareDistance && isPlayerFacing)
                 {
                     closestSquareDistance = sqrDist;
+                    interactable.IsPlayerFacing = true;
                     interactable.Highlight(true);
                 }
-                else interactable.Highlight(false);
+                else
+                {
+                    interactable.IsPlayerFacing = false;
+                    interactable.Highlight(false);
+                }
             }
         }
     }

@@ -1,8 +1,10 @@
+using Interfaces;
 using UnityEngine;
 
-public class HeldItem : MonoBehaviour
+public class HeldItem : MonoBehaviour, IInteractable
 {
     public GameObject heldItem { get; set; }
+    public bool IsPlayerFacing { get; set; }
     private PlayerController _player;
 
     // Start is called before the first frame update
@@ -43,5 +45,10 @@ public class HeldItem : MonoBehaviour
         heldItem.GetComponent<Rigidbody>().useGravity = true;
         Instantiate(heldItem, _player.transform.position + new Vector3(1, 1, 0), transform.rotation);
         Destroy(heldItem);
+    }
+
+    
+    public void Highlight(bool indicator)
+    {
     }
 }
