@@ -36,7 +36,7 @@ public class Countertop : MonoBehaviour, IInteractable
         IsPlayerNear = false;
     }
     
-    protected void PlaceItem(GameObject item)
+    protected virtual void PlaceItem(GameObject item)
     {
         if (!canSetItem) return;
 
@@ -57,7 +57,7 @@ public class Countertop : MonoBehaviour, IInteractable
         if (HeldItem.SetHeldItem(placedItem)) CleanCountertop();
     }
     
-    protected void CleanCountertop()
+    protected virtual void CleanCountertop()
     {
         if (placedItem) Destroy(placedItem);
         canSetItem = true;
