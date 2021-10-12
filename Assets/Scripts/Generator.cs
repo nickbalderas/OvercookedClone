@@ -4,7 +4,7 @@ public class Generator : Countertop
 {
     public GameObject generatedItem;
     
-    protected override void Update()
+    protected new void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && IsPlayerNear && IsPlayerFacing)
         {

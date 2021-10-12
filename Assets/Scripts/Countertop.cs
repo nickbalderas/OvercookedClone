@@ -4,13 +4,13 @@ using UnityEngine;
 public class Countertop : MonoBehaviour, IInteractable
 {
     public GameObject placedItem { get; set; }
-    public bool canSetItem { get; set; }
+    protected virtual bool canSetItem { get; set; }
     public bool canGetItem { get; set; }
     public bool IsPlayerFacing { get; set; }
     protected bool IsPlayerNear;
     protected HeldItem HeldItem;
 
-    private void Start()
+    protected virtual void Start()
     {
         gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
         HeldItem = GameObject.Find("HeldItem").GetComponent<HeldItem>();
@@ -50,7 +50,7 @@ public class Countertop : MonoBehaviour, IInteractable
         placedItem = Instantiate(item, new Vector3(transform.position.x, 2, transform.position.z), transform.rotation);
     }
 
-    protected void RemoveItem()
+    protected virtual void RemoveItem()
     {
         if (!canGetItem) return;
 

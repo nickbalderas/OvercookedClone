@@ -51,5 +51,7 @@ public class HeldItem : MonoBehaviour, IInteractable
     
     public void Highlight(bool indicator)
     {
+        Color color = indicator ? Color.gray : Color.clear;
+        gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
     }
 }
