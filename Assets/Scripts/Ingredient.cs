@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Ingredient : MonoBehaviour, ICarriable
 {
-    public bool IsCut { get; set; }
+    public bool isCut;
     public bool canPickup { get; set; }
     public bool IsPlayerFacing { get; set; }
     public GameObject prefab;

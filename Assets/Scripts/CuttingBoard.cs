@@ -5,7 +5,16 @@ public class CuttingBoard: Countertop
 {
     private bool CanCutIngredient { get; set; }
 
-    private new void PlaceItem(GameObject item)
+    protected override void Update()
+    {
+        base.Update();
+        if (Input.GetKeyDown(KeyCode.C) && IsPlayerNear && IsPlayerFacing)
+        {
+            CutIngredient();
+        }
+    }
+
+    protected override void PlaceItem(GameObject item)
     {
         if (!canSetItem) return;
 
@@ -13,7 +22,7 @@ public class CuttingBoard: Countertop
         if (carriable == null) return;
         
         Ingredient ingredient = item.GetComponent<Ingredient>();
-        CanCutIngredient = ingredient is {IsCut: false};
+        CanCutIngredient = ingredient is {isCut: false};
         
         canSetItem = false;
         canGetItem = true;
@@ -25,14 +34,12 @@ public class CuttingBoard: Countertop
     private void CutIngredient()
     {
         if (!CanCutIngredient) return;
-        placedItem.GetComponent<Ingredient>().IsCut = true;
+        placedItem.GetComponent<Ingredient>().isCut = true;
     }
 
-    private new void CleanCountertop()
+    protected override void CleanCountertop()
     {
-        if (placedItem) Destroy(placedItem);
-        canSetItem = true;
-        canGetItem = false;
+        base.CleanCountertop();
         CanCutIngredient = false;
     }
 }
