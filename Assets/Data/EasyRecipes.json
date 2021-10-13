@@ -1,0 +1,24 @@
+﻿{
+  "Items": [
+    {
+      "Id": "1",
+      "Name": "Salad",
+      "Ingredients": [
+        {
+          "Name": "Carrot",
+          "Condition": "isCut"
+        }
+      ]
+    },
+    {
+      "Id": "2",
+      "Name": "Cooked Fish",
+      "Ingredients": [
+        {
+          "Name": "Fish",
+          "Condition": "isCut"
+        }
+      ]
+    }
+  ]
+}
