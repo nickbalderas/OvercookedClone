@@ -125,4 +125,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c26bf6a0ef734e55bbb3eade1c5773a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: Cooked Fish
   isCut: 0
