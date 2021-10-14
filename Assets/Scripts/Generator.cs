@@ -6,16 +6,15 @@ public class Generator : Countertop
     
     protected new void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && IsPlayerNear && IsPlayerFacing)
-        {
-            if (_Item) RemoveItem();
-            else if (GameObject.Find("HeldItem").GetComponentInChildren<Item>()) PlaceItem();
-            else SpawnItem();
-        }
+        if (!Input.GetKeyDown(KeyCode.E) || !IsPlayerNear || !IsPlayerFacing) return;
+        if (CountertopItem) RemoveItem();
+        else if (HeldItem.GetItem()) PlaceItem();
+        else SpawnItem();
     }
     
     private void SpawnItem()
     {
-        _Item = Instantiate(generatedItem, new Vector3(transform.position.x, 2, transform.position.z), transform.rotation);
+        var position = CountertopTransform.position;
+        CountertopItem = Instantiate(generatedItem, new Vector3(position.x, 2, position.z), CountertopTransform.rotation);
     }
 }

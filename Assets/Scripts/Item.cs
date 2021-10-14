@@ -3,62 +3,65 @@ using UnityEngine;
 
 public class Item : MonoBehaviour, ICarriable
 {
-    public bool canPickup { get; set; }
     public bool IsPlayerFacing { get; set; }
-    public GameObject prefab { get; set; }
-    protected bool IsPlayerNear;
-    protected PlayerController _player;
-    private Rigidbody rb;
-    private BoxCollider coll;
+    public GameObject Prefab { get; set; }
+    private bool _isPlayerNear;
+    public Rigidbody rb;
+    private static readonly int EmissionColor = Shader.PropertyToID("_EmissionColor");
+    protected Transform ItemTransform;
+    private const string Player = "Player";
+    private const string Emission = "_EMISSION";
+    private bool _isPlayerHolding;
 
-    protected virtual void Start()
+
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        coll = GetComponent<BoxCollider>();
-        _player = GameObject.Find("Player").GetComponent<PlayerController>();
-        if (prefab) prefab.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+        ItemTransform = transform;
+        if (Prefab) Prefab.GetComponent<Renderer>().material.EnableKeyword(Emission);
     }
-    
+
     protected virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && IsPlayerNear && IsPlayerFacing) PickUp();
+        if (Input.GetKeyDown(KeyCode.E) && _isPlayerNear && IsPlayerFacing) PickUp();
         if (Input.GetKeyDown(KeyCode.Q)) Drop();
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        IsPlayerNear = other.gameObject.CompareTag("Player");
+        _isPlayerNear = other.gameObject.CompareTag(Player);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        IsPlayerNear = false;
+        _isPlayerNear = false;
     }
 
     public virtual void PickUp()
     {
-        var heldItem = GameObject.Find("HeldItem");
-        if (heldItem.GetComponent<Item>()) return;
+        var heldItem = HeldItem.GetItem();
+        if (heldItem) return;
         
-        transform.position = heldItem.transform.position;
-        transform.rotation = heldItem.transform.rotation;
+        var heldItemTransform = HeldItem.GetHeldItemTransform();
+        ItemTransform.SetPositionAndRotation(heldItemTransform.position, heldItemTransform.rotation);
+        ItemTransform.SetParent(heldItemTransform);
         rb.isKinematic = true;
-        transform.parent = heldItem.transform;
         Highlight(false);
+        _isPlayerHolding = true;
     }
 
     public void Drop()
     {
-        var heldItem = GameObject.Find("HeldItem").GetComponentInChildren<Item>();
-        if (!heldItem) return;
-
-        heldItem.GetComponent<Rigidbody>().isKinematic = false;
-        heldItem.transform.parent = null;
+        if (!_isPlayerHolding) return;
+        
+        ItemTransform.parent = null;
+        rb.isKinematic = false;
+        _isPlayerHolding = false;
     }
     
     public void Highlight(bool indicator)
     {
         Color color = indicator ? Color.gray : Color.clear;
-        gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
+        gameObject.GetComponent<Renderer>().material.SetColor(EmissionColor, color);
     }
 }
