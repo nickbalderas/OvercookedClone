@@ -12,7 +12,7 @@ public class Countertop : MonoBehaviour, IInteractable
     private static readonly int EmissionColor1 = Shader.PropertyToID(EmissionColor);
     
 
-    private void Awake()
+    protected virtual void Awake()
     {
         gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
         CountertopTransform = transform;
@@ -41,6 +41,9 @@ public class Countertop : MonoBehaviour, IInteractable
         if (CountertopItem) return;
 
         var heldItem = HeldItem.GetItem();
+
+        if (!heldItem) return;
+      
         heldItem.GetComponent<Rigidbody>().isKinematic = false;
         var position = CountertopTransform.position;
         CountertopItem = Instantiate(heldItem, new Vector3(position.x, 2, position.z), CountertopTransform.rotation);

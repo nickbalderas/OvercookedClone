@@ -31,8 +31,9 @@ public class PlateSpawner : Generator
         var position = CountertopTransform.position;
         var plate = Instantiate(generatedItem as Plate, new Vector3(position.x, 2, position.z),
             CountertopTransform.rotation);
-        plate.rb.constraints = RigidbodyConstraints.FreezeRotation;
-        plate.rb.useGravity = true;
+        var plateRb = plate.GetComponent<Rigidbody>();
+        plateRb.constraints = RigidbodyConstraints.FreezeRotation;
+        plateRb.useGravity = true;
         _plates.Add(plate);
     }
 }

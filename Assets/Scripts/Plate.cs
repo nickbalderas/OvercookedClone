@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Plate : Item
 {
-    private readonly List<Ingredient> _ingredientsOnPlate = new List<Ingredient>();
+    public List<Model.Ingredient> ingredients = new List<Model.Ingredient>();
 
     public override void PickUp()
     {
@@ -17,23 +16,16 @@ public class Plate : Item
 
     private void AddIngredient(Ingredient ingredient)
     {
+        //TODO: Should this condition act as Guard Clause
         if (!ingredient.isCut) return;
-        
-        _ingredientsOnPlate.Add(ingredient);
-        ingredient.GetComponent<Rigidbody>().isKinematic = false;
-        var position = ItemTransform.position;
-        Instantiate(ingredient, new Vector3(position.x, 2, position.z), ItemTransform.rotation);
-        ingredient.transform.parent = transform;
+
+        ingredients.Add(ingredient.ConvertToModel());
         Destroy(ingredient.gameObject);
     }
 
-    public void RemoveIngredient(Ingredient ingredient)
-    {
-        _ingredientsOnPlate.Remove(ingredient);
-    }
-
-    public bool DoesContainIngredients(List<Ingredient> ingredients)
-    {
-        return _ingredientsOnPlate.SequenceEqual(ingredients);
-    }
+    // public void RemoveIngredient(Ingredient ingredient)
+    // {
+    //     ingredientsOnPlate.Remove(ingredient);
+    // }
+    //
 }

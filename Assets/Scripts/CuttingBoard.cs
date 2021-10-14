@@ -16,6 +16,8 @@ public class CuttingBoard: Countertop
 
         var item = HeldItem.GetItem();
 
+        if (!item) return;
+
         Ingredient ingredient = item.GetComponent<Ingredient>();
         CanCutIngredient = ingredient is {isCut: false};
 

@@ -5,8 +5,8 @@
       "name": "Salad",
       "ingredients": [
         {
-          "name": "Carrot",
-          "condition": "isCut"
+          "ingredient": "Carrot",
+          "isCut": true
         }
       ]
     },
@@ -15,8 +15,8 @@
       "name": "Cooked Fish",
       "ingredients": [
         {
-          "name": "Fish",
-          "condition": "isCut"
+          "ingredient": "Fish",
+          "isCut": true
         }
       ]
     }
