@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Plate : Item
 {
-    public List<Ingredient> _ingredientsOnPlate = new List<Ingredient>();
+    private readonly List<Ingredient> _ingredientsOnPlate = new List<Ingredient>();
 
     public override void PickUp()
     {
@@ -15,13 +15,14 @@ public class Plate : Item
         else base.PickUp();
     }
 
-    public void AddIngredient(Ingredient ingredient)
+    private void AddIngredient(Ingredient ingredient)
     {
         if (!ingredient.isCut) return;
         
         _ingredientsOnPlate.Add(ingredient);
         ingredient.GetComponent<Rigidbody>().isKinematic = false;
-        Instantiate(ingredient, new Vector3(transform.position.x, 2, transform.position.z), transform.rotation);
+        var position = ItemTransform.position;
+        Instantiate(ingredient, new Vector3(position.x, 2, position.z), ItemTransform.rotation);
         ingredient.transform.parent = transform;
         Destroy(ingredient.gameObject);
     }

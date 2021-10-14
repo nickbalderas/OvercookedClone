@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Interfaces;
 using UnityEngine;
@@ -8,78 +7,83 @@ public class PlayerController : MonoBehaviour
 {
     private Camera _camera;
     private NavMeshAgent _agent;
-    public List<Collider> _interactableInRange = new List<Collider>();
+    public List<Collider> interactableInRange = new List<Collider>();
+    private const string Interactable = "Interactable";
+    private Transform _transform;
+    private float _closestSquareDistance;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         _camera = Camera.main;
         _agent = GetComponent<NavMeshAgent>();
+        _transform = transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         HandleMovement();
-        HighlightInteractable();
+        if (interactableInRange.Count > 0) HighlightInteractable();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Interactable"))
-        {
-            _interactableInRange.Add(other);
-        }
+        if (other.CompareTag(Interactable)) interactableInRange.Add(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Interactable"))
-        {
-            IInteractable utility = other.gameObject.GetComponent<IInteractable>();
-            utility.Highlight(false);
-            _interactableInRange.Remove(other);
-        }
+        if (!other.CompareTag(Interactable)) return;
+
+        IInteractable interactable = other.gameObject.GetComponent<IInteractable>();
+        interactable.Highlight(false);
+        interactableInRange.Remove(other);
     }
-    
+
     private void HandleMovement()
     {
         if (!Input.GetMouseButton(0)) return;
 
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out var hit))
-        {
-            _agent.destination = hit.point;
-        }
+        if (Physics.Raycast(ray, out var hit)) _agent.destination = hit.point;
     }
 
     private void HighlightInteractable()
     {
-        if (_interactableInRange.Count > 0)
-        {
-            float closestSquareDistance = Mathf.Infinity;
-            
-            foreach (Collider collider in _interactableInRange)
-            {
-                Vector3 pos = collider.ClosestPointOnBounds(transform.position);
-                Vector3 direction = pos - transform.position;
-                float sqrDist = direction.sqrMagnitude;
-                bool isPlayerFacing =  Vector3.Dot(transform.position, (collider.transform.position - transform.position).normalized) > 0;
+        if (interactableInRange.Count <= 0) return;
 
-                IInteractable interactable = collider.GetComponent<IInteractable>();
-                if (sqrDist < closestSquareDistance && isPlayerFacing)
-                {
-                    closestSquareDistance = sqrDist;
-                    interactable.IsPlayerFacing = true;
-                    interactable.Highlight(true);
-                }
-                else
-                {
-                    interactable.IsPlayerFacing = false;
-                    interactable.Highlight(false);
-                }
+        _closestSquareDistance = Mathf.Infinity;
+        var playerPosition = _transform.position;
+
+        foreach (var colliderInRange in interactableInRange)
+        {
+            var isPlayerFacing =
+                Vector3.Dot(playerPosition, (colliderInRange.transform.position - playerPosition).normalized) > 0;
+            var sqrDist = GetSquareDistanceFrom(colliderInRange);
+
+            var interactable = colliderInRange.GetComponent<IInteractable>();
+            if (IsPlayerClose(sqrDist) && isPlayerFacing)
+            {
+                _closestSquareDistance = GetSquareDistanceFrom(colliderInRange);
+                interactable.IsPlayerFacing = true;
+                interactable.Highlight(true);
+            }
+            else
+            {
+                interactable.IsPlayerFacing = false;
+                interactable.Highlight(false);
             }
         }
+    }
+
+    private bool IsPlayerClose(float sqrDist)
+    {
+        return sqrDist < _closestSquareDistance;
+    }
+
+    private float GetSquareDistanceFrom(Collider colliderInRange)
+    {
+        var pos = colliderInRange.ClosestPointOnBounds(transform.position);
+        var direction = pos - _transform.position;
+        return direction.sqrMagnitude;
     }
 }

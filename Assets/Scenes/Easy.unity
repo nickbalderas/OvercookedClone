@@ -755,7 +755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6af96688c0f114a1db2a5b69808d23cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactableInRange: []
+  interactableInRange: []
 --- !u!195 &544669839
 NavMeshAgent:
   m_ObjectHideFlags: 0

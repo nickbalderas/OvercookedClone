@@ -1,31 +1,34 @@
-﻿using System.Security.Cryptography;
-using Interfaces;
+﻿using Interfaces;
 using UnityEngine;
 
 public class Countertop : MonoBehaviour, IInteractable
 {
-    protected Item _Item { get; set; }
+    protected Item CountertopItem { get; set; }
     public bool IsPlayerFacing { get; set; }
-    protected bool IsPlayerNear;
+    protected bool IsPlayerNear { get; set; }
+    protected Transform CountertopTransform;
+    private const string Player = "Player";
+    private const string EmissionColor = "_EmissionColor";
+    private static readonly int EmissionColor1 = Shader.PropertyToID(EmissionColor);
+    
 
-    protected virtual void Start()
+    private void Awake()
     {
         gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+        CountertopTransform = transform;
         CleanCountertop();
     }
-    
+
     protected virtual void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && IsPlayerNear && IsPlayerFacing)
-        {
-            if (_Item) RemoveItem();
-            else PlaceItem();
-        }
+        if (!Input.GetKeyDown(KeyCode.E) || !IsPlayerNear || !IsPlayerFacing) return;
+        if (CountertopItem) RemoveItem();
+        else PlaceItem();
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        IsPlayerNear = other.gameObject.CompareTag("Player");
+        IsPlayerNear = other.gameObject.CompareTag(Player);
     }
 
     private void OnTriggerExit(Collider other)
@@ -35,39 +38,33 @@ public class Countertop : MonoBehaviour, IInteractable
     
     protected virtual void PlaceItem()
     {
-        if (_Item) return;
+        if (CountertopItem) return;
 
-        var item = GameObject.Find("HeldItem").GetComponentInChildren<Item>();
-        
-        ICarriable carriable = item.GetComponent<ICarriable>();
-        if (carriable == null) return;
-
-        item.GetComponent<Rigidbody>().isKinematic = false;
-        _Item = Instantiate(item, new Vector3(transform.position.x, 2, transform.position.z), transform.rotation);
-        Destroy(item.gameObject);
+        var heldItem = HeldItem.GetItem();
+        heldItem.GetComponent<Rigidbody>().isKinematic = false;
+        var position = CountertopTransform.position;
+        CountertopItem = Instantiate(heldItem, new Vector3(position.x, 2, position.z), CountertopTransform.rotation);
+        Destroy(heldItem.gameObject);
     }
 
     protected virtual void RemoveItem()
     {
-        if (!_Item) return;
+        var heldItem = HeldItem.GetItem();
+        if (!CountertopItem || heldItem) return;
 
-        if (!GameObject.Find("HeldItem").GetComponentInChildren<Item>())
-        {
-            var item = _Item;
-            item.PickUp();
-            _Item = null;
-        }
-        
+        CountertopItem.PickUp();
+        CountertopItem = null;
+
     }
     
     protected virtual void CleanCountertop()
     {
-        if (_Item) Destroy(_Item.gameObject);
+        if (CountertopItem) Destroy(CountertopItem.gameObject);
     }
 
     public void Highlight(bool indicator)
     {
         Color color = indicator ? Color.gray : Color.clear;
-        gameObject.GetComponent<Renderer>().material.SetColor("_EmissionColor", color);
+        gameObject.GetComponent<Renderer>().material.SetColor(EmissionColor1, color);
     }
 }
