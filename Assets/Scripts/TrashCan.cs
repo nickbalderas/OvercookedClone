@@ -10,11 +10,10 @@ public class TrashCan : Countertop
 
     protected override void PlaceItem()
     {
-        var isPlate = HeldItem.IsHeldItemPlate();
         var heldItem = HeldItem.GetItem();
         if (!heldItem) return;
         
-        if (heldItem && !isPlate)Destroy(heldItem.gameObject);
+        if (heldItem && !HeldItem.HeldPlate())Destroy(heldItem.gameObject);
         else heldItem.GetComponent<Plate>().ingredients.Clear();
     }
 }
