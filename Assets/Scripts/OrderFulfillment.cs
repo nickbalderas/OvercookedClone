@@ -4,6 +4,7 @@ using UnityEngine;
 public class OrderFulfillment : Countertop
 {
     private OrderQueue _orderQueue;
+    private ScoreController _scoreController;
     private PlateSpawner _plateSpawner;
     private WaitForSeconds _plateRespawnDelay;
 
@@ -11,6 +12,7 @@ public class OrderFulfillment : Countertop
     {
         base.Awake();
         _orderQueue = GameObject.Find("OrderQueue").GetComponent<OrderQueue>();
+        _scoreController = GameObject.Find("Game Manager").GetComponent<ScoreController>();
         _plateSpawner = GameObject.Find("Plate Spawner").GetComponent<PlateSpawner>();
         _plateRespawnDelay = new WaitForSeconds(5.0f);
     }
@@ -34,7 +36,7 @@ public class OrderFulfillment : Countertop
             //TODO: The logic works. HOWEVER... This seems a bit forced for what should simply be a built-in equality check.
 
             var isMatch = true;
-            foreach (var orderIngredient in order.ingredients)
+            foreach (var orderIngredient in order.recipe.ingredients)
             {
                 isMatch = plate.ingredients.Exists(plateIngredient =>
                     plateIngredient.ingredient.Equals(orderIngredient.ingredient) &&
@@ -43,6 +45,7 @@ public class OrderFulfillment : Countertop
 
             if (isMatch)
             {
+                _scoreController.UpdateScore(order.config.scoreOnComplete);
                 _orderQueue.RemoveOrderFromQueue(order);
                 break;
             }

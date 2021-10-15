@@ -3,27 +3,35 @@ using System.IO;
 using System.Linq;
 using Model;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utility;
+using Random = UnityEngine.Random;
 
 public class OrderQueue : MonoBehaviour
 {
-    public List<Recipe> orders = new List<Recipe>();
+    private ScoreController _scoreController;
+    private List<Order> _possibleOrders = new List<Order>();
+    public List<Order> orders = new List<Order>();
+
+    private void Awake()
+    {
+        _scoreController = GameObject.Find("Game Manager").GetComponent<ScoreController>();
+        InitializePossibleOrders("EasyOrders.json");
+    }
 
     //TODO: Remove these context menus after testing
     [ContextMenu("Read Orders")]
     public void ReadOrders()
     {
-        foreach (var recipe in orders)
+        foreach (var order in orders)
         {
-            Debug.Log(recipe.name);
+            Debug.Log(order.recipe.name);
         }
     }
 
     [ContextMenu("Add Order To Queue")]
     public void AddOrder()
     {
-        GenerateRandomOrder("EasyRecipes.json");
+        GenerateRandomOrder();
     }
 
     [ContextMenu("Remove Order From Queue")]
@@ -33,24 +41,35 @@ public class OrderQueue : MonoBehaviour
     }
 
 
-    public void AddOrderToQueue(Recipe recipe)
+    public void AddOrderToQueue(Order order)
     {
-        orders.Add(recipe);
+        orders.Add(order);
     }
 
     
-    public bool RemoveOrderFromQueue(Recipe recipe)
+    public bool RemoveOrderFromQueue(Order order)
     {
-        return orders.Remove(recipe);
+        return orders.Remove(order);
     }
 
-    
-    public void GenerateRandomOrder(string difficulty)
+    private void InitializePossibleOrders(string difficulty)
     {
         string path = Application.dataPath + "/Data/" + difficulty;
         string contents = File.ReadAllText(path);
-        List<Recipe> existingRecipes = JsonHelper.FromJson<Recipe>(contents).ToList();
-        var randomRecipe = existingRecipes[Random.Range(0, existingRecipes.Count)];
-        AddOrderToQueue(randomRecipe);
+        _possibleOrders = JsonHelper.FromJson<Order>(contents).ToList();
+    }
+
+    private void HandleOrderExpiration(Order order)
+    {
+        _scoreController.UpdateScore(order.config.penaltyOnExpiration);
+        RemoveOrderFromQueue(order);
+    }
+
+    private void GenerateRandomOrder()
+    {
+        var randomOrder = _possibleOrders[Random.Range(0, _possibleOrders.Count)];
+        var order = new Order(randomOrder);
+        order.HandleExpiration = () => HandleOrderExpiration(order);
+        AddOrderToQueue(order);
     }
 }

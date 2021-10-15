@@ -1,0 +1,38 @@
+﻿{
+  "Items": [
+    {
+      "recipe": {
+        "id": "1",
+        "name": "Salad",
+        "ingredients": [
+          {
+            "ingredient": "Carrot",
+            "isCut": true
+          }
+        ]
+      },
+      "config": {
+        "timeDuration": 60.0,
+        "scoreOnComplete": 10,
+        "penaltyOnExpiration": -10
+      }
+    },
+    {
+      "recipe": {
+        "id": "2",
+        "name": "Cooked Fish",
+        "ingredients": [
+          {
+            "ingredient": "Fish",
+            "isCut": true
+          }
+        ]
+      },
+      "config": {
+        "timeDuration": 60.0,
+        "scoreOnComplete": 10,
+        "penaltyOnExpiration": -10
+      }
+    }
+  ]
+}
