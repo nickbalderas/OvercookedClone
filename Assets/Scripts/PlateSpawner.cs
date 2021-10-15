@@ -9,7 +9,7 @@ public class PlateSpawner : Generator
     
     private void Start()
     {
-        for (var i = 1; i <= StartingNumberOfPlates; i++) SpawnPlates();
+        for (var i = 1; i <= StartingNumberOfPlates; i++) SpawnPlate();
     }
 
     protected new void Update()
@@ -26,7 +26,7 @@ public class PlateSpawner : Generator
         _plates.RemoveAt(_plates.Count - 1);
     }
 
-    private void SpawnPlates()
+    public void SpawnPlate()
     {
         var position = CountertopTransform.position;
         var plate = Instantiate(generatedItem as Plate, new Vector3(position.x, 2, position.z),
