@@ -1,13 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class OrderFulfillment : Countertop
 {
     private OrderQueue _orderQueue;
+    private PlateSpawner _plateSpawner;
+    private WaitForSeconds _plateRespawnDelay;
 
     protected override void Awake()
     {
         base.Awake();
         _orderQueue = GameObject.Find("OrderQueue").GetComponent<OrderQueue>();
+        _plateSpawner = GameObject.Find("Plate Spawner").GetComponent<PlateSpawner>();
+        _plateRespawnDelay = new WaitForSeconds(5.0f);
     }
 
     protected override void Update()
@@ -44,5 +49,12 @@ public class OrderFulfillment : Countertop
         }
 
         Destroy(CountertopItem.gameObject);
+        StartCoroutine(nameof(SpawnPlate));
+    }
+
+    private IEnumerator SpawnPlate()
+    {
+        yield return _plateRespawnDelay;
+        _plateSpawner.SpawnPlate();
     }
 }
