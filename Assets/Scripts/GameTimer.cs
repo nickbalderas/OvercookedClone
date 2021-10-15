@@ -1,44 +1,36 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class GameTimer : MonoBehaviour
 {
     public float InitialDuration { get; set; }
     public float TimeRemaining { get; set; }
-    public bool TimerIsRunning { get; set; }
+    
     private Text TimerText { get; set; }
+
+    public Action HandleTimerExpiration;
 
     private void Update()
     {
-        if (!TimerIsRunning) return;
-        
+        if (Time.timeScale == 0 || TimeRemaining == 0) return;
+
         if (TimeRemaining > 0)
         {
             TimeRemaining -= Time.deltaTime;
             DisplayTime(TimeRemaining);
-        }
-        else
-        {
-            Debug.Log("Time has run out!");
-            TimeRemaining = 0;
-            TimerIsRunning = false;
-        }
+        }else TimeExpired();
     }
 
-    public void Play()
+    private void TimeExpired()
     {
-        TimerIsRunning = true;
-    }
-
-    public void Pause()
-    {
-        TimerIsRunning = false;
+        TimeRemaining = 0;
+        HandleTimerExpiration();
     }
 
     public void ResetTimer()
     {
         TimeRemaining = InitialDuration;
-        TimerIsRunning = false;
     }
 
     private static void DisplayTime(float timeToDisplay)
@@ -49,6 +41,6 @@ public class GameTimer : MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         // TimerText.text = $"{minutes:00}:{seconds:00}";
-        Debug.Log($"{minutes:00}:{seconds:00}");
+        // Debug.Log($"{minutes:00}:{seconds:00}");
     }
 }
