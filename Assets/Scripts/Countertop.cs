@@ -52,12 +52,8 @@ public class Countertop : MonoBehaviour, IInteractable
 
     protected virtual void RemoveItem()
     {
-        var heldItem = HeldItem.GetItem();
-        if (!CountertopItem || heldItem) return;
-
-        CountertopItem.PickUp();
-        CountertopItem = null;
-
+        if (!CountertopItem) return;
+        if(CountertopItem.PickUp()) CountertopItem = null;
     }
     
     protected virtual void CleanCountertop()

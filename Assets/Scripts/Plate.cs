@@ -1,31 +1,26 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
 public class Plate : Item
 {
     public List<Model.Ingredient> ingredients = new List<Model.Ingredient>();
+    //TODO: Does this change with difficulty? Reference Overcooked.
+    public int maxIngredientsOnPlate = 1;
 
-    public override void PickUp()
+    public override bool PickUp()
     {
-        var heldItem = GameObject.Find("HeldItem");
-        var heldIngredient = heldItem.GetComponentInChildren<Ingredient>();
-        if (heldItem && heldIngredient)
-            AddIngredient(heldItem.GetComponentInChildren<Ingredient>());
-        else base.PickUp();
+        var heldIngredient = HeldItem.HeldIngredient();
+        if (!heldIngredient) return base.PickUp();
+        AddIngredient(heldIngredient);
+        return false;
     }
 
-    private void AddIngredient(Ingredient ingredient)
+    public void AddIngredient(Ingredient ingredient)
     {
-        //TODO: Should this condition act as Guard Clause
-        if (!ingredient.isCut) return;
+        //TODO: Should isCut condition act as Guard Clause? Not scalable with multiple conditions.
+        var ingredientToAdd = 1;
+        if (!ingredient.isCut || ingredients.Count + ingredientToAdd > maxIngredientsOnPlate) return;
 
         ingredients.Add(ingredient.ConvertToModel());
         Destroy(ingredient.gameObject);
     }
-
-    // public void RemoveIngredient(Ingredient ingredient)
-    // {
-    //     ingredientsOnPlate.Remove(ingredient);
-    // }
-    //
 }

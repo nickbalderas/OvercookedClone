@@ -2,7 +2,7 @@
 {
     public interface ICarriable : IInteractable
     {
-        public void PickUp();
+        public bool PickUp();
         public void Drop();
     }
 }

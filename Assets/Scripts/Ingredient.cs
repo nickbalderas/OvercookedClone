@@ -1,5 +1,5 @@
 ﻿using System;
-using Interfaces;
+using UnityEngine;
 
 [Serializable]
 public class Ingredient : Item
@@ -12,23 +12,15 @@ public class Ingredient : Item
         return new Model.Ingredient(ingredient, isCut);
     }
 
-    // public bool CanPickup { get; set; } = true;
-
-    // protected override void Update()
-    // {
-    //     if (!CanPickup) return;
-    //     base.Update();
-    // }
-    //
-    // public override void PickUp()
-    // {
-    //     if (!CanPickup) return;
-    //     base.PickUp();
-    // }
-    //
-    // public override void Highlight(bool indicator)
-    // {
-    //     if (!CanPickup) return;
-    //     base.Highlight(indicator);
-    // }
+    public override bool PickUp()
+    {
+        var heldPlate = HeldItem.HeldPlate();
+        if (!heldPlate) return base.PickUp();
+        //TODO: Better way of implementing? Need to remove collider from interactable in range before Destroy.
+        var player = GameObject.Find("Player").GetComponent<PlayerController>();
+        player.interactableInRange.Remove(GetComponent<Collider>());
+        
+        heldPlate.AddIngredient(this);
+        return false;
+    }
 }

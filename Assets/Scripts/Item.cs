@@ -36,10 +36,10 @@ public class Item : MonoBehaviour, ICarriable
         _isPlayerNear = false;
     }
 
-    public virtual void PickUp()
+    public virtual bool PickUp()
     {
         var heldItem = HeldItem.GetItem();
-        if (heldItem) return;
+        if (heldItem) return false;
         
         var heldItemTransform = HeldItem.GetHeldItemTransform();
         ItemTransform.SetPositionAndRotation(heldItemTransform.position, heldItemTransform.rotation);
@@ -47,6 +47,7 @@ public class Item : MonoBehaviour, ICarriable
         _rb.isKinematic = true;
         Highlight(false);
         _isPlayerHolding = true;
+        return true;
     }
 
     public void Drop()

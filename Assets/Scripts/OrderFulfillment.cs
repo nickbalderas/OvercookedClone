@@ -12,7 +12,7 @@ public class OrderFulfillment : Countertop
 
     protected override void Update()
     {
-        if (!Input.GetKeyDown(KeyCode.E) || !IsPlayerNear || !IsPlayerFacing || !HeldItem.IsHeldItemPlate()) return;
+        if (!Input.GetKeyDown(KeyCode.E) || !IsPlayerNear || !IsPlayerFacing || !HeldItem.HeldPlate()) return;
         PlaceItem();
     }
 
