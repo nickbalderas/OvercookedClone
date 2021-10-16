@@ -1,13 +1,13 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameTimer : MonoBehaviour
 {
     public float InitialDuration { get; set; }
-    public float TimeRemaining { get; set; }
+    private float TimeRemaining { get; set; }
     
-    private Text TimerText { get; set; }
+    public TextMeshProUGUI TimerText { get; set; }
 
     public Action HandleTimerExpiration;
 
@@ -33,14 +33,13 @@ public class GameTimer : MonoBehaviour
         TimeRemaining = InitialDuration;
     }
 
-    private static void DisplayTime(float timeToDisplay)
+    private void DisplayTime(float timeToDisplay)
     {
         timeToDisplay += 1;
 
         float minutes = Mathf.FloorToInt(timeToDisplay / 60); 
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-
-        // TimerText.text = $"{minutes:00}:{seconds:00}";
-        // Debug.Log($"{minutes:00}:{seconds:00}");
+        
+        TimerText.text = $"{minutes:00}:{seconds:00}";
     }
 }
