@@ -7,9 +7,6 @@ public class InterfaceController : MonoBehaviour
 {
     public GameObject mainMenuScreen;
     public Button playButton;
-    
-    public GameObject countdownScreen;
-    public TextMeshProUGUI countdownText;
 
     public GameObject gameOverlayScreen;
     public TextMeshProUGUI gameTimeText;

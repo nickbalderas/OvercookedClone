@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using Model;
 using UnityEngine;
@@ -16,7 +15,7 @@ public class  GameManager : MonoBehaviour
         _gameTimer = GetComponent<GameTimer>();
         _interfaceController = GetComponent<InterfaceController>();
         
-        InitializeGameDifficulty("");
+        InitializeGameDifficulty("EasyMode.json");
         _gameTimer.InitialDuration = _gameOptions.gameTimerDuration;
         _gameTimer.ResetTimer();
         _gameTimer.HandleTimerExpiration = EndGame;
@@ -31,7 +30,7 @@ public class  GameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 0;
-        _gamePaused = true; 
+        _gamePaused = true;
     }
 
     private void Update()
@@ -46,6 +45,7 @@ public class  GameManager : MonoBehaviour
         // Read article for understanding: https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/
         Time.timeScale = 1;
         _gamePaused = false;
+        _interfaceController.pauseMenuScreen.SetActive(false);
         _interfaceController.mainMenuScreen.SetActive(false);
         _interfaceController.pauseMenuScreen.SetActive(false);
         _interfaceController.gameOverlayScreen.SetActive(true);
@@ -71,7 +71,6 @@ public class  GameManager : MonoBehaviour
 
     private void InitializeGameDifficulty(string difficulty)
     {
-        difficulty = "EasyMode.json";
         string path = Application.dataPath + "/Data/" + difficulty;
         string contents = File.ReadAllText(path);
         GameOptions gameOptions = JsonUtility.FromJson<GameOptions>(contents);

@@ -11,21 +11,28 @@ namespace Model
         public OrderConfig config;
         [FormerlySerializedAs("_timer")] public GameTimer timer;
         public Action HandleExpiration;
+        public OrderUI display;
 
         public Order(Order order)
         {
             recipe = order.recipe;
             config = new OrderConfig(order.config);
-            
+
             timer = new GameObject().AddComponent<GameTimer>();
             timer.InitialDuration = order.config.timeDuration;
             timer.HandleTimerExpiration = HandleExpiredOrder;
             timer.ResetTimer();
         }
 
-        public void HandleExpiredOrder()
+        private void HandleExpiredOrder()
         {
             HandleExpiration();
+        }
+
+        public void DestroyOrder()
+        {
+            display.DestoryDisplay();
+            timer.DestroyTimer();
         }
     }
 }
