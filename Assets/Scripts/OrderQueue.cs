@@ -10,10 +10,14 @@ public class OrderQueue : MonoBehaviour
 {
     private ScoreController _scoreController;
     private List<Order> _possibleOrders = new List<Order>();
+    private Transform _transform;
+    
     public List<Order> orders = new List<Order>();
+    public OrderUI orderUIPrefab;
 
     private void Awake()
     {
+        _transform = transform;
         _scoreController = GameObject.Find("Game Manager").GetComponent<ScoreController>();
         InitializePossibleOrders("EasyOrders.json");
     }
@@ -32,6 +36,7 @@ public class OrderQueue : MonoBehaviour
     public void AddOrder()
     {
         GenerateRandomOrder();
+        
     }
 
     [ContextMenu("Remove Order From Queue")]
@@ -44,12 +49,16 @@ public class OrderQueue : MonoBehaviour
     public void AddOrderToQueue(Order order)
     {
         orders.Add(order);
+        PositionOrdersInQueue();
     }
 
     
     public bool RemoveOrderFromQueue(Order order)
     {
-        return orders.Remove(order);
+        order.DestroyOrder();
+        orders.Remove(order);
+        PositionOrdersInQueue();
+        return true;
     }
 
     private void InitializePossibleOrders(string difficulty)
@@ -69,7 +78,23 @@ public class OrderQueue : MonoBehaviour
     {
         var randomOrder = _possibleOrders[Random.Range(0, _possibleOrders.Count)];
         var order = new Order(randomOrder);
+        
         order.HandleExpiration = () => HandleOrderExpiration(order);
+        order.display = Instantiate(orderUIPrefab, transform);
+        order.display.order = order;
         AddOrderToQueue(order);
+    }
+
+    private void PositionOrdersInQueue()
+    {
+        var setOrderUIWidth = 400;
+        var orderPositionXY = new Vector3(-766, 0);
+
+        foreach (var order in orders)
+        {
+            order.display.transform.localPosition = orderPositionXY;
+            orderPositionXY.x = orderPositionXY.x + setOrderUIWidth + 5;
+        }
+
     }
 }

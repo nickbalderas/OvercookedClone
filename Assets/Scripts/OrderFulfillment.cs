@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class OrderFulfillment : Countertop
 {
-    private OrderQueue _orderQueue;
+    public OrderQueue orderQueue;
     private ScoreController _scoreController;
     private PlateSpawner _plateSpawner;
     private WaitForSeconds _plateRespawnDelay;
@@ -11,7 +11,6 @@ public class OrderFulfillment : Countertop
     protected override void Awake()
     {
         base.Awake();
-        _orderQueue = GameObject.Find("OrderQueue").GetComponent<OrderQueue>();
         _scoreController = GameObject.Find("Game Manager").GetComponent<ScoreController>();
         _plateSpawner = GameObject.Find("Plate Spawner").GetComponent<PlateSpawner>();
         _plateRespawnDelay = new WaitForSeconds(5.0f);
@@ -28,7 +27,7 @@ public class OrderFulfillment : Countertop
         base.PlaceItem();
         Plate plate = CountertopItem.GetComponent<Plate>();
 
-        foreach (var order in _orderQueue.orders)
+        foreach (var order in orderQueue.orders)
         {
             // Do the ingredients for this order match the ingredients on the plate?
             // If so, remove the order. Else do nothing.
@@ -46,7 +45,7 @@ public class OrderFulfillment : Countertop
             if (isMatch)
             {
                 _scoreController.UpdateScore(order.config.scoreOnComplete);
-                _orderQueue.RemoveOrderFromQueue(order);
+                orderQueue.RemoveOrderFromQueue(order);
                 break;
             }
         }

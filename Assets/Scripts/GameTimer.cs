@@ -39,7 +39,15 @@ public class GameTimer : MonoBehaviour
 
         float minutes = Mathf.FloorToInt(timeToDisplay / 60); 
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        
-        TimerText.text = $"{minutes:00}:{seconds:00}";
+
+        if (TimerText)
+        {
+            TimerText.text = $"{minutes:0}:{seconds:00}";
+        }
+    }
+
+    public void DestroyTimer()
+    {
+        Destroy(gameObject);
     }
 }
