@@ -10,6 +10,7 @@ public class InterfaceController : MonoBehaviour
 
     public GameObject gameOverlayScreen;
     public TextMeshProUGUI gameTimeText;
+    public TextMeshProUGUI scoreDisplay;
 
     public GameObject gameOverScreen;
     public TextMeshProUGUI finalScoreText;
