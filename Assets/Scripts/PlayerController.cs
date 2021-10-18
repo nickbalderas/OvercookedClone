@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
+    private GameManager _gameManager;
     private Camera _camera;
     private NavMeshAgent _agent;
     public List<Collider> interactableInRange = new List<Collider>();
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         _camera = Camera.main;
         _agent = GetComponent<NavMeshAgent>();
         _transform = transform;
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMovement()
     {
+        if (_gameManager.gamePaused) return;
         if (!Input.GetMouseButton(0)) return;
 
         var ray = _camera.ScreenPointToRay(Input.mousePosition);

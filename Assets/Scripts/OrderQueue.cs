@@ -22,29 +22,10 @@ public class OrderQueue : MonoBehaviour
         InitializePossibleOrders("EasyOrders.json");
     }
 
-    //TODO: Remove these context menus after testing
-    [ContextMenu("Read Orders")]
-    public void ReadOrders()
-    {
-        foreach (var order in orders)
-        {
-            Debug.Log(order.recipe.name);
-        }
-    }
-
-    [ContextMenu("Add Order To Queue")]
-    public void AddOrder()
+    private void Start()
     {
         GenerateRandomOrder();
-        
     }
-
-    [ContextMenu("Remove Order From Queue")]
-    public void RemoveOrder()
-    {
-        RemoveOrderFromQueue(orders[Random.Range(0, orders.Count)]);
-    }
-
 
     public void AddOrderToQueue(Order order)
     {
@@ -58,6 +39,7 @@ public class OrderQueue : MonoBehaviour
         order.DestroyOrder();
         orders.Remove(order);
         PositionOrdersInQueue();
+        GenerateRandomOrder();
         return true;
     }
 
