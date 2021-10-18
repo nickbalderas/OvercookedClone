@@ -8,7 +8,7 @@ public class  GameManager : MonoBehaviour
     private InterfaceController _interfaceController;
     private GameTimer _gameTimer;
     private GameOptions _gameOptions;
-    private bool _gamePaused;
+    public bool gamePaused;
 
     private void Awake()
     {
@@ -30,13 +30,13 @@ public class  GameManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 0;
-        _gamePaused = true;
+        gamePaused = true;
     }
 
     private void Update()
     {
         if (!Input.GetKeyDown(KeyCode.Space)) return;
-        if (!_gamePaused) PauseGame();
+        if (!gamePaused) PauseGame();
         else PlayGame();
     }
 
@@ -44,7 +44,7 @@ public class  GameManager : MonoBehaviour
     {
         // Read article for understanding: https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/
         Time.timeScale = 1;
-        _gamePaused = false;
+        gamePaused = false;
         _interfaceController.pauseMenuScreen.SetActive(false);
         _interfaceController.mainMenuScreen.SetActive(false);
         _interfaceController.pauseMenuScreen.SetActive(false);
@@ -55,7 +55,7 @@ public class  GameManager : MonoBehaviour
     {
         _interfaceController.pauseMenuScreen.SetActive(true);
         Time.timeScale = 0;
-        _gamePaused = true; 
+        gamePaused = true; 
     }
 
     private void RestartGame()
@@ -67,6 +67,8 @@ public class  GameManager : MonoBehaviour
     {
         _interfaceController.gameOverlayScreen.SetActive(false);
         _interfaceController.gameOverScreen.SetActive(true);
+        Time.timeScale = 0;
+        gamePaused = true; 
     }
 
     private void InitializeGameDifficulty(string difficulty)
