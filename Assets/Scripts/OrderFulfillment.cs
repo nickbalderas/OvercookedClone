@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class OrderFulfillment : Countertop
 {
     public OrderQueue orderQueue;
+    private AudioSource _gameAudio;
+    public AudioClip orderFulfilledAudioClip;
     private ScoreController _scoreController;
     private PlateSpawner _plateSpawner;
     private WaitForSeconds _plateRespawnDelay;
@@ -14,6 +17,7 @@ public class OrderFulfillment : Countertop
         _scoreController = GameObject.Find("Game Manager").GetComponent<ScoreController>();
         _plateSpawner = GameObject.Find("Plate Spawner").GetComponent<PlateSpawner>();
         _plateRespawnDelay = new WaitForSeconds(5.0f);
+        _gameAudio = GameObject.Find("Game Manager").GetComponent<AudioSource>();
     }
 
     protected override void Update()
@@ -46,6 +50,7 @@ public class OrderFulfillment : Countertop
             {
                 _scoreController.UpdateScore(order.config.scoreOnComplete);
                 orderQueue.RemoveOrderFromQueue(order);
+                _gameAudio.PlayOneShot(orderFulfilledAudioClip);
                 break;
             }
         }
