@@ -15,7 +15,7 @@
         "timeDuration": 60.0,
         "scoreOnComplete": 10,
         "penaltyOnExpiration": -10,
-        "imageName": "salad"
+        "imageName": "carrot"
       }
     },
     {
@@ -33,7 +33,7 @@
         "timeDuration": 60.0,
         "scoreOnComplete": 10,
         "penaltyOnExpiration": -10,
-        "imageName": "cooked_fish"
+        "imageName": "fish"
       }
     }
   ]

@@ -1,4 +1,5 @@
 ﻿using Interfaces;
+using UnityEditor;
 using UnityEngine;
 
 public class Countertop : MonoBehaviour, IInteractable
@@ -10,7 +11,7 @@ public class Countertop : MonoBehaviour, IInteractable
     private const string Player = "Player";
     private const string EmissionColor = "_EmissionColor";
     private static readonly int EmissionColor1 = Shader.PropertyToID(EmissionColor);
-    
+
 
     protected virtual void Awake()
     {
@@ -63,7 +64,7 @@ public class Countertop : MonoBehaviour, IInteractable
 
     public void Highlight(bool indicator)
     {
-        Color color = indicator ? Color.gray : Color.clear;
+        Color color = indicator ? Color.blue : Color.clear;
         gameObject.GetComponent<Renderer>().material.SetColor(EmissionColor1, color);
     }
 }
