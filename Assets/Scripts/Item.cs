@@ -1,5 +1,6 @@
 ﻿using Interfaces;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Item : MonoBehaviour, ICarriable
 {
@@ -11,6 +12,9 @@ public class Item : MonoBehaviour, ICarriable
     private const string Player = "Player";
     private const string Emission = "_EMISSION";
     private bool _isPlayerHolding;
+    private AudioSource _gameAudio;
+    public AudioClip pickupAudioClip;
+    public AudioClip dropAudioClip;
 
 
     private void Awake()
@@ -18,6 +22,7 @@ public class Item : MonoBehaviour, ICarriable
         _rb = GetComponent<Rigidbody>();
         ItemTransform = transform;
         gameObject.GetComponent<Renderer>().material.EnableKeyword(Emission);
+        _gameAudio = GameObject.Find("Game Manager").GetComponent<AudioSource>();
     }
 
     protected virtual void Update()
@@ -47,6 +52,7 @@ public class Item : MonoBehaviour, ICarriable
         _rb.isKinematic = true;
         Highlight(false);
         _isPlayerHolding = true;
+        _gameAudio.PlayOneShot(pickupAudioClip);
         return true;
     }
 
@@ -57,6 +63,7 @@ public class Item : MonoBehaviour, ICarriable
         ItemTransform.parent = null;
         _rb.isKinematic = false;
         _isPlayerHolding = false;
+        _gameAudio.PlayOneShot(dropAudioClip);
     }
     
     public virtual void Highlight(bool indicator)

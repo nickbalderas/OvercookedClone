@@ -11,12 +11,21 @@ public class GameTimer : MonoBehaviour
 
     public Action HandleTimerExpiration;
 
+    private AudioSource _gameAudio;
+    public AudioClip finalCountdownAudioClip;
+
+    private void Awake()
+    {
+        _gameAudio = GameObject.Find("Game Manager").GetComponent<AudioSource>();
+    }
+
     private void Update()
     {
         if (Time.timeScale == 0 || TimeRemaining == 0) return;
 
         if (TimeRemaining > 0)
         {
+            if (TimeRemaining <= 3) _gameAudio.PlayOneShot(finalCountdownAudioClip);
             TimeRemaining -= Time.deltaTime;
             DisplayTime(TimeRemaining);
         }else TimeExpired();

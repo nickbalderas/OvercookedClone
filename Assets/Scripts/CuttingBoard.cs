@@ -3,10 +3,13 @@
 public class CuttingBoard: Countertop
 {
     private bool CanCutIngredient { get; set; }
+    private AudioSource _gameAudio;
+    public AudioClip cutAudioClip;
 
     protected override void Update()
     {
         base.Update();
+        _gameAudio = GameObject.Find("Game Manager").GetComponent<AudioSource>();
         if (Input.GetKeyDown(KeyCode.C) && IsPlayerNear && IsPlayerFacing) CutIngredient();
     }
 
@@ -30,8 +33,8 @@ public class CuttingBoard: Countertop
     private void CutIngredient()
     {
         if (!CanCutIngredient) return;
-        
         CountertopItem.GetComponent<Ingredient>().isCut = true;
+        _gameAudio.PlayOneShot(cutAudioClip);
     }
 
     protected override void CleanCountertop()
