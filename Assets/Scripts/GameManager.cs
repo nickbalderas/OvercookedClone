@@ -9,6 +9,7 @@ public class  GameManager : MonoBehaviour
     private GameTimer _gameTimer;
     private GameOptions _gameOptions;
     public bool gamePaused;
+    private bool _gameStarted;
 
     private void Awake()
     {
@@ -35,13 +36,16 @@ public class  GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!Input.GetKeyDown(KeyCode.Space)) return;
+        if (!_gameStarted) return;
+        
+        if (!Input.GetKeyDown(KeyCode.Escape)) return;
         if (!gamePaused) PauseGame();
         else PlayGame();
     }
 
     private void PlayGame()
     {
+        _gameStarted = true;
         // Read article for understanding: https://gamedevbeginner.com/the-right-way-to-pause-the-game-in-unity/
         Time.timeScale = 1;
         gamePaused = false;
