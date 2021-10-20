@@ -1,6 +1,8 @@
+using System.Collections;
 using System.IO;
 using Model;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 public class  GameManager : MonoBehaviour
@@ -13,6 +15,9 @@ public class  GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 0;
+        gamePaused = true;
+        
         _gameTimer = GetComponent<GameTimer>();
         _interfaceController = GetComponent<InterfaceController>();
         
@@ -26,12 +31,6 @@ public class  GameManager : MonoBehaviour
         _interfaceController.restartGameButton.onClick.AddListener(RestartGame);
         _interfaceController.resumeGameButton.onClick.AddListener(PlayGame);
         _interfaceController.quitGameButton.onClick.AddListener(RestartGame);
-    }
-
-    private void Start()
-    {
-        Time.timeScale = 0;
-        gamePaused = true;
     }
 
     private void Update()
@@ -77,9 +76,24 @@ public class  GameManager : MonoBehaviour
 
     private void InitializeGameDifficulty(string difficulty)
     {
-        string path = Application.dataPath + "/Data/" + difficulty;
-        string contents = File.ReadAllText(path);
-        GameOptions gameOptions = JsonUtility.FromJson<GameOptions>(contents);
-        _gameOptions = gameOptions;
+        string path = Application.dataPath + "/StreamingAssets/" + difficulty;
+        
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            StartCoroutine("WebGLJsonRead", path);
+        }
+        else
+        {
+            string contents = File.ReadAllText(path);
+            GameOptions gameOptions = JsonUtility.FromJson<GameOptions>(contents);
+            _gameOptions = gameOptions; 
+        }
+    }
+
+    IEnumerator WebGLJsonRead(string path)
+    {
+        UnityWebRequest www = UnityWebRequest.Get(path);
+        yield return www.SendWebRequest();
+        _gameOptions = JsonUtility.FromJson<GameOptions>(www.downloadHandler.text);
     }
 }

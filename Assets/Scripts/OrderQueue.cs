@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Model;
 using UnityEngine;
+using UnityEngine.Networking;
 using Utility;
 using Random = UnityEngine.Random;
 
@@ -45,9 +47,17 @@ public class OrderQueue : MonoBehaviour
 
     private void InitializePossibleOrders(string difficulty)
     {
-        string path = Application.dataPath + "/Data/" + difficulty;
-        string contents = File.ReadAllText(path);
-        _possibleOrders = JsonHelper.FromJson<Order>(contents).ToList();
+        string path = Application.dataPath + "/StreamingAssets/" + difficulty;
+        
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            StartCoroutine("WebGLJsonRead", path);
+        }
+        else
+        {
+            string contents = File.ReadAllText(path);
+            _possibleOrders = JsonHelper.FromJson<Order>(contents).ToList();
+        }
     }
 
     private void HandleOrderExpiration(Order order)
@@ -78,5 +88,12 @@ public class OrderQueue : MonoBehaviour
             orderPositionXY.x = orderPositionXY.x + setOrderUIWidth + 5;
         }
 
+    }
+    
+    IEnumerator WebGLJsonRead(string path)
+    {
+        UnityWebRequest www = UnityWebRequest.Get(path);
+        yield return www.SendWebRequest();
+        _possibleOrders = JsonHelper.FromJson<Order>(www.downloadHandler.text).ToList();
     }
 }

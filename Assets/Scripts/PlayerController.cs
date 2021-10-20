@@ -12,9 +12,11 @@ public class PlayerController : MonoBehaviour
     private const string Interactable = "Interactable";
     private Transform _transform;
     private float _closestSquareDistance;
+    private Animator _playerAnimator;
 
     private void Awake()
     {
+        _playerAnimator = GetComponent<Animator>();
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         _camera = Camera.main;
         _agent = GetComponent<NavMeshAgent>();
@@ -44,10 +46,18 @@ public class PlayerController : MonoBehaviour
     private void HandleMovement()
     {
         if (_gameManager.gamePaused) return;
-        if (!Input.GetMouseButton(0)) return;
+        if (!Input.GetMouseButton(0))
+        {
+            _playerAnimator.SetFloat("Speed_f", 0f);
+            return;
+        };
 
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out var hit)) _agent.destination = hit.point;
+        if (Physics.Raycast(ray, out var hit))
+        {
+            _agent.destination = hit.point;
+            _playerAnimator.SetFloat("Speed_f", 20f);
+        }
     }
 
     private void HighlightInteractable()
