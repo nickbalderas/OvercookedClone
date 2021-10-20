@@ -64,7 +64,15 @@ public class Countertop : MonoBehaviour, IInteractable
 
     public void Highlight(bool indicator)
     {
-        Color color = indicator ? Color.blue : Color.clear;
-        gameObject.GetComponent<Renderer>().material.SetColor(EmissionColor1, color);
+        var existingHighlight = gameObject.GetComponent<Outline>();
+        if (indicator && existingHighlight) return;
+        if (!indicator && existingHighlight) Destroy(existingHighlight);
+        if (indicator && !existingHighlight)
+        {
+            var highlight = gameObject.AddComponent<Outline>();
+            highlight.OutlineMode = Outline.Mode.OutlineAll;
+            highlight.OutlineColor = Color.cyan;
+            highlight.OutlineWidth = 10f;
+        }
     }
 }

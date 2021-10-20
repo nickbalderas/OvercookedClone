@@ -28,7 +28,7 @@ public class Item : MonoBehaviour, ICarriable
     protected virtual void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && _isPlayerNear && IsPlayerFacing) PickUp();
-        if (Input.GetKeyDown(KeyCode.Q)) Drop();
+        if (Input.GetKeyDown(KeyCode.D)) Drop();
     }
     
     private void OnTriggerEnter(Collider other)
@@ -68,7 +68,15 @@ public class Item : MonoBehaviour, ICarriable
     
     public virtual void Highlight(bool indicator)
     {
-        Color color = indicator ? Color.gray : Color.clear;
-        gameObject.GetComponent<Renderer>().material.SetColor(EmissionColor, color);
+        var existingHighlight = gameObject.GetComponent<Outline>();
+        if (indicator && existingHighlight) return;
+        if (!indicator && existingHighlight) Destroy(existingHighlight);
+        if (indicator && !existingHighlight)
+        {
+            var highlight = gameObject.AddComponent<Outline>();
+            highlight.OutlineMode = Outline.Mode.OutlineAll;
+            highlight.OutlineColor = Color.cyan;
+            highlight.OutlineWidth = 10f;
+        }
     }
 }

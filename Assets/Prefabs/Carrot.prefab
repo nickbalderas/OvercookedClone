@@ -126,6 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupAudioClip: {fileID: 8300000, guid: c053c3d2a711144dcb83ba80730f20a6, type: 3}
-  dropAudioClip: {fileID: 8300000, guid: a051eff23feab4ee4ad6fb3062150ba7, type: 3}
+  dropAudioClip: {fileID: 8300000, guid: 4e3603de7732b4cd9ba7bc643cd59c99, type: 3}
   ingredient: Carrot
   isCut: 0
